@@ -8,19 +8,54 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+ 		<style>
+ 			body {
+			 margin: 0;
+			 background-image: url(dgback.jpg),
+			 				   url(doge.png);
+			 background-size: 142px 254px, 250px 329px;
+			 background-repeat:no-repeat, no-repeat;
+			 background-position: left,bottom;
+			 display: compact;
+			 font: 13px/18px "Comic Sans MS", cursive, sans-serif;
+			}
+		</style>
 	</head>
 	
-	<body>
+	<body backgroud="dgback.jpg">
 
 		<div class = "container">
 			<h1 class='text-info' align="center">DogeVideo</h1>
+			
 			<br><br><br>
-			<legend class='text-info'>Login</legend>
+
+			<legend class='text-info'>Create Account</legend>
+			<p class='text-primary'>Email Address</p>
+			<input type='text' name ='email' value='' required value='1'>
+
+			<br><br>
+
 			<p class='text-primary'>Username</p>
 			<input type='text' name ='username' value='' required value='1'>
-			<br>
+			
+			<br><br>
+			
 			<p class='text-primary'>Password</p>
 			<input type='password' name ='password' value='' required value='1'>
+			
+			<br><br>
+
+			<p class='text-primary'>Confirm Password</p>
+			<input type='password' name ='cpassword' value='' required value='1'>
+
+			<br><br>
+
+			<label class='btn btn-success' onclick="window.location.href='landing-page.html'">Submit</label>
+			
+
+			
+			<br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 	</body>
 </html>
