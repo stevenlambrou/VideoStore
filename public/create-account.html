@@ -31,28 +31,52 @@
 			<br><br><br>
 
 			<legend class='text-info'>Create Account</legend>
-			<p class='text-primary'>Email Address</p>
-			<input type='text' name ='email' value='' required value='1'>
 
-			<br><br>
+			<div class="row">
+				<div class="col-sm-4">
+					<h3>Contact Information</h3>
+					<p class='text-primary'>Name</p>
+					<input type='text' name ='name' value='' required value='1'>
+					<br><br>
+					<p class='text-primary'>Email Address</p>
+					<input type='text' name ='email' value='' required value='1'>
+					<br><br>
+					<p class='text-primary'>Mailing Address</p>
+					<input type='text' name ='mail' value='' required value='1'>
 
-			<p class='text-primary'>Username</p>
-			<input type='text' name ='username' value='' required value='1'>
+				</div>
+
+				<div class="col-sm-4">
+					<h3>Account Information</h3>
+					<p class='text-primary'>Username</p>
+					<input type='text' name ='username' value='' required value='1'>
 			
-			<br><br>
+					<br><br>
 			
-			<p class='text-primary'>Password</p>
-			<input type='password' name ='password' value='' required value='1'>
+					<p class='text-primary'>Password</p>
+					<input type='password' name ='password' value='' required value='1'>
 			
-			<br><br>
+					<br><br>
 
-			<p class='text-primary'>Confirm Password</p>
-			<input type='password' name ='cpassword' value='' required value='1'>
+					<p class='text-primary'>Confirm Password</p>
+					<input type='password' name ='cpassword' value='' required value='1'>
 
-			<br><br>
+					<br><br>
 
-			<label class='btn btn-success' onclick="window.location.href='landing-page.html'">Submit</label>
-			
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Plan Type
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+      						<li><a href="#">HTML</a></li>
+      						<li><a href="#">CSS</a></li>
+      						<li><a href="#">JavaScript</a></li>
+    					</ul>
+    				</div>
+
+    				<br><br>
+
+					<label class='btn btn-success' onclick="window.location.href='landing-page.html'">Submit</label>
+				</div>
 
 			
 			<br><br><br><br><br><br><br><br><br><br><br>
