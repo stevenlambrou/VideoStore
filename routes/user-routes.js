@@ -91,6 +91,25 @@ router.post('/auth', (req, res) => {
     }
   });
 
+router.get('/rentals',function(req,res){
+	
+
+	var message = req.flash('rentals') || ''
+	req.flash('rentals',{
+		message: message
+	});
+});
+
+router.get('/returns', function(req,res){
+
+
+	var message = req.flash('returns') || ''
+	req.flash('returns',{
+		message: message
+	});
+});
+
+
 // Renders the main user view.
 router.get('/landing-page', function(req, res) {
   // Grab the user session if it exists:
