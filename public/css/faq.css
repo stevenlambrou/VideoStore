@@ -1,0 +1,20 @@
+.questionContainer {
+	text-align: center;
+	margin: 9%;
+	display: none;
+}
+
+.question1 {
+	text-align: left;
+	margin-top: 5%;
+}
+
+.question2{
+	text-align: left;
+	margin-top: 5.01%;
+}
+
+.question3{
+	text-align: left;
+	margin-top:5.02%;
+}

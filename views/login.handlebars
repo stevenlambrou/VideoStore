@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+
+<div class="container-fluid login">
+  <div class="formContainer">
+    <h2>
+      Please login to Doge Video
+    </h2>
+
+    <div class="form">
+      <form class="form" method="post" action="/user/auth">
+        <input type="text" name="name" placeholder="Username"> <br>
+        <input type="password" name="pass" placeholder="Password"> <br>
+        <button class="btn btn-success">Login</button>
+      </form>
+
+      <div>{{message}}</div>
+
+    </div>
+
+
+  
+
+    <p>
+      <p style="font-size: 20px;">
+        Don't have an account?
+      </p>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+        Sign up here!
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Sign Up Here</h4>
+            </div>
+
+            <form class="form" method="post" action="/user/signup">
+              <div class="modal-body">
+                  <input type="text" name="name" placeholder="Username"> <br>
+                  <input type="password" name="pass" placeholder="Password"> <br>
+                  <input type="password" name="confirm" placeholder="Confirm Password"> <br>
+                  <input type ="text" name = "email" placeholder ="email">
+                  <br>
+                  <input type = "text" name = "city" placeholder = "city">
+                  <br>
+                  <input type = "text" name ="mail" placeholder = "Mail Address">
+                  <br>
+                  <input type ="number" name = "plan" placeholder = "enter plan">
+                  <br>
+
+
+              </div>
+
+              <button class="btn btn-success">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </p>
+
+  </div>
+</div>
+
+<script src="../js/login.js"></script>

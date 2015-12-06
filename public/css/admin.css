@@ -1,0 +1,25 @@
+.selection * {
+  padding: 30px;
+  text-align: center;
+}
+
+.subject {
+  margin: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: 2px solid #009933;
+}
+
+.admin {
+  text-align: center;
+  color: #00ff00;
+}
+
+.subject:hover {
+  background-color: #66ff99;
+  -webkit-transition: background-color 1000ms linear;
+  -moz-transition: background-color 1000ms linear;
+  -o-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+}

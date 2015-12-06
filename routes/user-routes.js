@@ -6,8 +6,6 @@ var model = require('../lib/model');
 // particular routes from the main application.
 var router = express.Router();
 
-// A list of users who are online:
-var online = require('../lib/online').online;
 // Provides a login view
 
 function user(name,pass,city,mailAddress,email,planid){
@@ -22,11 +20,12 @@ function user(name,pass,city,mailAddress,email,planid){
 
   };
 }
-router.post('/rentals' , (req.res) => {
+
+
+router.post('/rent' , (req,res) => {
   var user = req.session.user;
 
-}
-
+});
 
 
 router.get('/login', (req, res) => {
@@ -34,15 +33,20 @@ router.get('/login', (req, res) => {
   var user = req.session.user;
 
   // Redirect to main if session and user is online:
-  if (user && online[user.name]) {
-    res.redirect('/user/profile'); //Changed from main to home
-  }
-  else {
-    // Grab any messages being sent to us from redirect:
+   
     var message = req.flash('login') || '';
-    res.render('login', { title   : 'User Login',
-                          message : message });
-  }
+    res.render('login', {
+    	message:message  });
+  
+});
+
+router.get('/create-account', (req,res) => {
+
+  var message = req.flash('create-account') || '';
+  res.render('create-account',{
+    title : 'Create-Account',
+    message:message
+  });
 });
 
 // Performs **basic** user authentication.
@@ -50,10 +54,8 @@ router.post('/auth', (req, res) => {
   // Grab the session if the user is logged in.
   var user = req.session.user;
 
-  console.log("Anonymous: " + req.query.anon);
-
     // Redirect to main if session and user is online:
-    if (user && online[user]) {
+    if (user) {
       res.redirect('/user/home');
     }
     else {
@@ -74,22 +76,20 @@ router.post('/auth', (req, res) => {
           }
           else {
             // add the user to the map of online users:
-            online[user.name] = user;
+            
+
 
             // create a session variable to represent stateful connection
             req.session.user = user;
 
             // Pass a message to main:
-            req.flash('home', 'Authentication Successful');
-            res.redirect('/user/home');
+            req.flash('login', 'Authentication Successful');
+            res.redirect('/user/profile');
           }
         });
       }
     }
-  }
-
-
-});
+  });
 
 // Renders the main user view.
 router.get('/landing-page', function(req, res) {
@@ -99,22 +99,13 @@ router.get('/landing-page', function(req, res) {
   console.log("HELLO" + user);
 
   // If no session, redirect to login.
-  if (!user) {
-    req.flash('login', 'Not logged in');
-    res.redirect('/user/login');
-  }
-  else if (user && !online[user.name]) {
-    req.flash('login', 'Login Expired');
-    delete req.session.user;
-    res.redirect('/user/login')
-  }
-  else {
+
     // capture the user object or create a default.
     var message = req.flash('home') || 'Login Successful';
     res.render('home', {
       message: message
     });
-  }
+  
 });
 
 
@@ -126,17 +117,10 @@ router.get('/logout', function(req, res) {
   // If the client has a session, but is not online it
   // could mean that the server restarted, so we require
   // a subsequent login.
-  if (user && !online[user.name]) {
+  if (user) {
     delete req.session.user;
   }
-  // Otherwise, we delete both.
-  else if (user) {
-    delete online[user.name];
-    delete req.session.user;
-  }
-
-  // Redirect to login regardless.
-  res.redirect('/user/login');
+    res.redirect('/user/login');
 });
 
 
@@ -158,8 +142,8 @@ router.get('/profile', function (req, res) {
     }
 
     res.render('profile', {
-      name: user.name,
-      admin: admin
+      name: user.name
+     
     });
   }
 
@@ -173,34 +157,41 @@ router.get('/about', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
-  var name = req.body.name;
+	console.log("ENTERING SIGN UP ROUTE");
+ var name = req.body.name;
   var pass = req.body.pass;
-  var confirm = req.body.confirm;
+  var mailAddress = req.body.mail;
+  var city = req.body.city;
+  var email = req.body.email;
+  var cpass = req.body.confirm;
+  var plan = req.body.plan;
 
-  if (!name || !pass || !confirm) {
+  
+
+  if (!name || !pass || !mailAddress || !cpass || !email || !city || !plan) {
     req.flash('login', 'Sign up unsuccessful. Please provide valid credentials.');
     res.redirect('/user/login');
   }
 
   else {
-	var u = user(name,pass,false);
-	console.log(u);
-	model.userAdd(u,function(err, person) {
+	var u = user(name,pass,city,mailAddress,email,plan);
+	
+	
+	model.addUser(u,function(err) {
 		if(err){
-			if(err.code == 11000){
+				console.log(err);
 				req.flash('login', "duplicate username");
 				res.redirect('/user/login');
 			}
-			else{
-				req.flash('login', 'error adding user');
-				res.redirect('/user/login');
-			}
-		}
+			
 		else{
 
-			req.flash('login', 'Sign Up Complete!');
-			res.redirect('/user/login');
-		}
+			req.flash('landing-page', 'Sign Up Complete!');
+			res.redirect('/user/profile');
+			}
+		});
+	}
+});
 	/*
 				if(e){
 					req.flash('login','error adding');
@@ -227,8 +218,5 @@ router.post('/signup', function (req, res) {
 
     //Check if username has already been taken. If so, flash appropriate message;
     */
-  	});
-  }
-});
-
+ 
 module.exports = router;

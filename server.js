@@ -118,10 +118,13 @@ app.use('/user', require('./routes/user-routes'));
 
 app.get('/', (req, res) => {
 	res.redirect('/user/login');
-	/* Old, to be deleted
-	res.render('home', {
+	
+});
+
+app.get('/create-account', (req,res) =>{
+	res.render('create-account.html',{
+
 	});
-	*/
 });
 
 // Dynamic About View
