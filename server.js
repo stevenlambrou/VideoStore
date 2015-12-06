@@ -140,6 +140,12 @@ app.get('/login', (req, res) => {
 	});
 });
 
+app.get('/faq', (req,res) =>{
+	res.render('faq',{
+
+	});
+});
+
 app.get('/profile', (req, res) => {
 	res.render('profile', {
 	});

@@ -108,26 +108,11 @@ router.get('/returns', function(req,res){
 		message: message
 	});
 });
-
-
-// Renders the main user view.
-router.get('/landing-page', function(req, res) {
-  // Grab the user session if it exists:
-  var user = req.session.user;
-
-  console.log("HELLO" + user);
-
-  // If no session, redirect to login.
-
-    // capture the user object or create a default.
-    var message = req.flash('home') || 'Login Successful';
-    res.render('home', {
-      message: message
-    });
-  
+router.get('/faq', function (req, res) {
+  res.render('FAQ', {
+    title : 'FAQ',
+  });
 });
-
-
 // Performs logout functionality - it does nothing!
 router.get('/logout', function(req, res) {
   // Grab the user session if logged in.
@@ -176,7 +161,6 @@ router.get('/about', function (req, res) {
 });
 
 router.post('/signup', function (req, res) {
-	console.log("ENTERING SIGN UP ROUTE");
  var name = req.body.name;
   var pass = req.body.pass;
   var mailAddress = req.body.mail;
