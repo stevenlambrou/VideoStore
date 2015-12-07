@@ -17,7 +17,8 @@
 
   			var str = document.getElementById("search");
   			var url = "http://www.imdb.com/find?ref_=nv_sr_fn&q=" + str.replace(" ", "+") + "&s=all";
-  			document.write(<iframe src=url></iframe>);
+  			var ifrm = document.createElement('iframe');
+  			ifrm.setAttribute('src', url);
 
 		}	
 	 </script>
