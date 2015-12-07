@@ -148,9 +148,15 @@ router.get('/profile', function (req, res) {
     if (user.admin === true) {
       admin = "Administrator";
     }
+    
 
     res.render('profile', {
-      name: user.name
+     name: user.name,
+     username: user.name,
+     email: user.email,
+     City: user.city,
+     mail: user.mailaddress,
+     plan: user.planid
      
     	});
   	}

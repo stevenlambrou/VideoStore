@@ -22,7 +22,7 @@ INSERT INTO Plans(planName,price,MaxNum) VALUES('SuperAwesome',39.99, 3);
 INSERT INTO Plans(planName,price,MaxNum) VALUES('GalaticPremium',49.99, 4);
 
 INSERT INTO Customer(name,password,city,mailaddress,email,planid) VALUES('Matthaus', '12345', 'Boston', '123TestStreetAmherstMA', 'test@test.test', 1);
-INSERT INTO Customer(name,password,city,mailaddress,email,planid)  VALUES('John', '15367', 'Boston', '123TestStreetBostonMA', 'test2@test.test', 1);
+
 INSERT INTO Customer(name,password,city,mailaddress,email,planid)  VALUES('Ed', '695279', 'NewYork', '123TestStreetNewYorkCityNY', 'test3@test.test', 4);
 INSERT INTO Customer(name,password,city,mailaddress,email,planid)  VALUES('Steven', '346784', '???', '123TestStreet??????', 'test4@test.test', 5);
 
