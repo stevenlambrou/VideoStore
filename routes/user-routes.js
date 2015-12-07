@@ -94,17 +94,17 @@ router.post('/auth', (req, res) => {
 router.get('/rentals',function(req,res){
 	
 
-	var message = req.flash('rentals') || ''
-	req.flash('rentals',{
+	var message = req.flash('rentview') || ''
+	res.render('rentview',{
 		message: message
 	});
 });
 
 router.get('/returns', function(req,res){
 
-
-	var message = req.flash('returns') || ''
-	req.flash('returns',{
+	
+	var message = req.flash('returnview') || ''
+	res.render('returnview',{
 		message: message
 	});
 });
@@ -194,6 +194,55 @@ router.post('/signup', function (req, res) {
 			}
 		});
 	}
+});
+
+router.post('/return',function(req,res){
+	
+	var user = req.session.user;
+	if(!user){
+		req.flash('login','You must login to return a movie');
+		res.redirect('/user/login');
+		return;
+	}
+	console.log(req.body.MovieName);
+	var name = req.body.MovieName;
+	
+	if(!name){
+		req.flash('returnview',"Please enter a movie name");
+		res.redirect('/user/returns');
+
+	}
+	else{
+		model.movieLookup(name,function(err,result){
+			if(err){
+				console.log(err);
+				req.flash('returnview',err);
+				res.redirect('/user/returns');
+				
+			}
+			else{
+				var id = result.rows[0].movieid;
+				console.log(typeof id);
+				model.returnMovie(user.name,id,function(err){
+
+					if(err){
+						
+				req.flash('returnview',err);
+				res.redirect('/user/returns');
+				
+					}
+					else{
+						console.log("RETURNING MOVIE SUCCEDDED");
+						req.flash('returnview','MOVIE RETURNED');
+						res.redirect('/user/returns');
+					}
+				});
+				
+
+			}
+		});
+	}
+
 });
 	/*
 				if(e){

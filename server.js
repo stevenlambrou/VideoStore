@@ -152,13 +152,13 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/returns', (req,res) => {
-	res.render('return',{
+	res.render('returnview',{
 
 	});
 });
 
 app.get('/rentals',(req,res) =>{
-	res.render('rental',{
+	res.render('rentview',{
 
 	});
 });
