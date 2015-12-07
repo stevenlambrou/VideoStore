@@ -81,7 +81,7 @@ router.post('/auth', (req, res) => {
             req.session.user = user;
 
             // Pass a message to main:
-            req.flash('login', 'Authentication Successful');
+           
             res.redirect('/user/profile');
           }
         });
@@ -148,7 +148,7 @@ router.get('/profile', function (req, res) {
     if (user.admin === true) {
       admin = "Administrator";
     }
-    
+
 
     res.render('profile', {
      name: user.name,
