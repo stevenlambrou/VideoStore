@@ -148,8 +148,8 @@ router.get('/profile', function (req, res) {
     res.render('profile', {
       name: user.name
      
-    });
-  }
+    	});
+  	}
 
 
 });
@@ -200,40 +200,39 @@ router.post('/return',function(req,res){
 	
 	var user = req.session.user;
 	if(!user){
-		req.flash('login','You must login to return a movie');
+		req.flash('login','You must login to return a movie!');
 		res.redirect('/user/login');
 		return;
 	}
-	console.log(req.body.MovieName);
-	var name = req.body.MovieName;
 	
-	if(!name){
-		req.flash('returnview',"Please enter a movie name");
+	var mname = req.body.MovieName;
+	
+	if(!mname){
+		req.flash('returnview',"Please enter a Movie Name");
 		res.redirect('/user/returns');
 
 	}
 	else{
-		model.movieLookup(name,function(err,result){
+		model.movieLookup(mname,function(err,result){
 			if(err){
-				console.log(err);
-				req.flash('returnview',err);
+				
+				req.flash('returnview','Movie Name not in our Collection');
 				res.redirect('/user/returns');
 				
 			}
 			else{
 				var id = result.rows[0].movieid;
-				console.log(typeof id);
 				model.returnMovie(user.name,id,function(err){
 
 					if(err){
 						
-				req.flash('returnview',err);
+				req.flash('returnview','You are not currently renting this movie');
 				res.redirect('/user/returns');
 				
 					}
 					else{
-						console.log("RETURNING MOVIE SUCCEDDED");
-						req.flash('returnview','MOVIE RETURNED');
+						
+						req.flash('returnview','Movie Returned yay!');
 						res.redirect('/user/returns');
 					}
 				});
@@ -243,6 +242,46 @@ router.post('/return',function(req,res){
 		});
 	}
 
+});
+
+router.post('/rent', function(req,res){
+	console.log("POST REQUEST MADE");
+	var user = req.session.user;
+	if(!user){
+		req.flash('login','You must login to rent a movie!');
+		res.redirect('/user/login');
+		return;
+	}
+	var mname = req.body.MovieName;
+	if(!mname){
+		req.flash('rentview',"Please enter a Movie Name");
+		res.redirect('/user/rentals');
+
+	}
+	else{
+		model.movieLookup(mname,function(err,result){
+			if(err){
+				
+				req.flash('rentview','Movie Name not in our Collection');
+				res.redirect('/user/rentals');
+				
+			}
+			else{
+				var id = result.rows[0].movieid;
+				movie.rent(user.name,id,function(err){
+					if(err){
+						req.flash('rentview','Someone is already renting this movie');
+						res.redirect('/user/rentals');					
+			}
+			else{
+				req.flash('rentview','Movie Rented yay');
+				res.redirect('/user/rentals')
+			}
+				});
+	}
+
+});
+	}
 });
 	/*
 				if(e){
