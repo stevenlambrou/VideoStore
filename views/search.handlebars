@@ -3,6 +3,18 @@
 <div class="container">
   	<h1>Search</h1>
 
+  	<script type="text/javascript">
+  		function searchfunc(){
+
+  			var str = document.getElementById("search");
+  			var url = "http://www.imdb.com/find?ref_=nv_sr_fn&q=" + str.replace(" ", "+") + "&s=all";
+  			var ifrm = document.createElement('iframe');
+  			ifrm.setAttribute('src', url);
+  			document.body.appendChild(ifrm);
+
+		}	
+	 </script>
+
   	<form class="form">
   		<div class="form-group">
   			<label for="MovieName">Search</label>
@@ -12,15 +24,5 @@
   		<button onclick="searchfunc()" class="btn btn-default">GO!</button>
   	</form>
 
-  	<script type="text/javascript">
-  		function searchfunc(){
-
-  			var str = document.getElementById("search");
-  			var url = "http://www.imdb.com/find?ref_=nv_sr_fn&q=" + str.replace(" ", "+") + "&s=all";
-  			document.write(<iframe src=url></iframe>);
-
-		}	
-	 </script>
-  	
   	
 </div>
