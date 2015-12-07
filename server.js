@@ -128,7 +128,11 @@ app.get('/create-account', (req,res) =>{
 });
 
 // Dynamic About View
+app.get('/search',(req,res) => {
+	res.render('search',{
 
+	});
+});
 app.get('/about', (req, res) => {
 	res.render('about', {
 	});

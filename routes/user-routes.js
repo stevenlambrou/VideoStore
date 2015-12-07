@@ -40,13 +40,11 @@ router.get('/login', (req, res) => {
   
 });
 
-router.get('/create-account', (req,res) => {
+router.get('/search', (req,res) =>{
+	
+	res.render('search',{
 
-  var message = req.flash('create-account') || '';
-  res.render('create-account',{
-    title : 'Create-Account',
-    message:message
-  });
+	});
 });
 
 // Performs **basic** user authentication.
@@ -108,6 +106,7 @@ router.get('/returns', function(req,res){
 		message: message
 	});
 });
+
 router.get('/faq', function (req, res) {
   res.render('FAQ', {
     title : 'FAQ',
@@ -244,7 +243,7 @@ router.post('/return',function(req,res){
 
 });
 
-router.post('/rent', function(req,res){
+router.post('/renting', function(req,res){
 	console.log("POST REQUEST MADE");
 	var user = req.session.user;
 	if(!user){
@@ -268,7 +267,7 @@ router.post('/rent', function(req,res){
 			}
 			else{
 				var id = result.rows[0].movieid;
-				movie.rent(user.name,id,function(err){
+				model.rent(user.name,id,function(err){
 					if(err){
 						req.flash('rentview','Someone is already renting this movie');
 						res.redirect('/user/rentals');					
