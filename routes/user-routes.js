@@ -81,7 +81,7 @@ router.post('/auth', (req, res) => {
             req.session.user = user;
 
             // Pass a message to main:
-           
+           	
             res.redirect('/user/profile');
           }
         });
@@ -199,8 +199,8 @@ router.post('/signup', function (req, res) {
 			
 		else{
 
-			req.flash('landing-page', 'Sign Up Complete!');
-			res.redirect('/user/profile');
+			req.flash('login', 'Sign Up Complete!');
+			res.redirect('/user/login');
 			}
 		});
 	}
