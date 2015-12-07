@@ -1,0 +1,26 @@
+<div>{{message}}</div>
+
+<div class="container">
+  	<h1>Search</h1>
+
+  	<form class="form">
+  		<div class="form-group">
+  			<label for="MovieName">Search</label>
+  			<input type="text" class="form-control" id="search" name="MovieName" placeholder="Movies, actors, directors, etc.">
+  		</div>
+
+  		<button onclick="searchfunc()" class="btn btn-default">GO!</button>
+  	</form>
+
+  	<script type="text/javascript">
+  		function searchfunc(){
+
+  			var str = document.getElementById("search");
+  			var url = "http://www.imdb.com/find?ref_=nv_sr_fn&q=" + str.replace(" ", "+") + "&s=all";
+  			document.write(<iframe src=url></iframe>);
+
+		}	
+	 </script>
+  	
+  	
+</div>
