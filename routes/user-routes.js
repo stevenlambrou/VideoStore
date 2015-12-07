@@ -122,8 +122,13 @@ router.get('/logout', function(req, res) {
   // a subsequent login.
   if (user) {
     delete req.session.user;
-  }
     res.redirect('/user/login');
+  }
+  else{
+  	res.redirect('/user/login');
+  }
+
+    
 });
 
 
