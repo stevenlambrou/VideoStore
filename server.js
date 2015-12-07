@@ -151,6 +151,18 @@ app.get('/profile', (req, res) => {
 	});
 });
 
+app.get('/returns', (req,res) => {
+	res.render('return',{
+
+	});
+});
+
+app.get('/rentals',(req,res) =>{
+	res.render('rental',{
+
+	});
+});
+
 
 
 
