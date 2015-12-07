@@ -22,13 +22,11 @@ INSERT INTO Plans(planName,price,MaxNum) VALUES('SuperAwesome',39.99, 3);
 INSERT INTO Plans(planName,price,MaxNum) VALUES('GalaticPremium',49.99, 4);
 
 INSERT INTO Customer(name,password,city,mailaddress,email,planid) VALUES('Matthaus', '12345', 'Boston', '123TestStreetAmherstMA', 'test@test.test', 1);
-
 INSERT INTO Customer(name,password,city,mailaddress,email,planid)  VALUES('Ed', '695279', 'NewYork', '123TestStreetNewYorkCityNY', 'test3@test.test', 4);
 INSERT INTO Customer(name,password,city,mailaddress,email,planid)  VALUES('Steven', '346784', '???', '123TestStreet??????', 'test4@test.test', 5);
 
 INSERT INTO Rentals VALUES('Matthaus', 1);
-INSERT INTO Rentals VALUES('John', 2);
 INSERT INTO Rentals VALUES('Ed',3);
 INSERT INTO Rentals VALUES('Steven',4);
 INSERT INTO Rentals VALUES('Matthaus', 5);
-INSERT INTO Rentals VALUES('John', 6);
+
